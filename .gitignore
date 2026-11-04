@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+build/
+dist/
+*.bin
+*.elf
+*.hex
+EOF
