@@ -1,0 +1,17 @@
+[Unit]
+Description=UNO Q MyCard MCU API
+After=network.target arduino-router.service
+Requires=arduino-router.service
+
+[Service]
+Type=simple
+User=arduino
+SupplementaryGroups=arduino-router
+WorkingDirectory=__APP_DIR__
+ExecStart=__APP_DIR__/.venv/bin/uvicorn python.main:app --host 127.0.0.1 --port 53003
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

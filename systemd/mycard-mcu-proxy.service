@@ -1,0 +1,16 @@
+[Unit]
+Description=UNO Q MyCard MCU Unix Socket Proxy
+Requires=mycard-mcu.service
+After=mycard-mcu.service
+
+[Service]
+Type=simple
+User=arduino
+WorkingDirectory=__APP_DIR__
+ExecStart=/usr/bin/socat UNIX-LISTEN:__RUN_DIR__/mcu.sock,fork,unlink-early,mode=666 TCP:127.0.0.1:53003
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
